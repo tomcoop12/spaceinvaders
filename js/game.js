@@ -9,7 +9,7 @@ var AlienFlock = function AlienFlock() {
 
   this.die = function() {
     if(Game.board.nextLevel()) {
-      Game.loadBoard(new GameBoard(Game.board.nextLevel()));    //Detects when you have won the game.
+      Game.loadBoard(new GameBoard(Game.board.nextLevel()));    //Detects when you've won the game.
     } else {
       Game.callbacks['win']();
     }
