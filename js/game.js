@@ -107,7 +107,7 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 3) {         //How many missiles you can fire in a row.
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 5) {         //How many missiles you can fire in a row.
     GameAudio.play('fire');                                                         //Audio for firing missiles.
     this.board.addSprite('missile',                                                 //Adds the missile sprite.
                           this.x + this.w/2 - Sprites.map.missile.w/2,
