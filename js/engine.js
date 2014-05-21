@@ -1,11 +1,11 @@
 var Game = new function() {                                                                  
-  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };                          //Sets the function of the left, right and space bar keys.
+  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };                          //Sets the function of the left, right and space bar keys
   this.keys = {};
 
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
     this.canvas_elem = $(canvas_dom)[0];
     this.canvas = this.canvas_elem.getContext('2d');
-    this.width = $(this.canvas_elem).attr('width');                               //Maybe sets the height and width of game? Ask Rob.
+    this.width = $(this.canvas_elem).attr('width');                               //Maybe sets the height and width of game? 
     this.height= $(this.canvas_elem).attr('height');
 
     $(window).keydown(function(event) {
@@ -18,7 +18,7 @@ var Game = new function() {
 
     this.level_data = level_data;
     this.callbacks = callbacks;
-    Sprites.load(sprite_data,this.callbacks['start']);                           //Tells the game what to load on each level? Ask Rob.
+    Sprites.load(sprite_data,this.callbacks['start']);                           //tells the game what to load on each level? 
   };
 
   this.loadBoard = function(board) { Game.board = board; };
@@ -35,7 +35,7 @@ var Sprites = new function() {
 
   this.load = function(sprite_data,callback) { 
     this.map = sprite_data;
-    this.image = new Image();                               //This loads the sprites onto the gameboard??                        
+    this.image = new Image();                               //loads the sprites onto the gameboard??                        
     this.image.onload = callback;
     this.image.src = 'images/sprites.png';
   };
@@ -57,7 +57,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
     canvas.font = "bold 40px arial";
     var measure = canvas.measureText(text);  
     canvas.fillStyle = "#FFFFFF";
-    canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);                //Sets the font, text weight and colour of the game?
+    canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);                //sets the font, text weight and colour of the game?
     canvas.font = "bold 20px arial";
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);
@@ -117,7 +117,7 @@ var GameBoard = function GameBoard(level_number) {
     return !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) ||                 
              (o1.x+o1.w-1<o2.x) || (o1.x>o2.x+o2.w-1));
   };
-                                                                //This may be the collision detection for the game.
+                                                                //maybe the collision detection for the game
   this.collide = function(obj) {
     return this.detect(function() {
       if(obj != this && !this.invulnrable)
