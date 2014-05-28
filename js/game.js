@@ -2,14 +2,14 @@
 var AlienFlock = function AlienFlock() {
   this.invulnrable = true;
   this.dx = 10; this.dy = 0;
-  this.hit = 1; this.lastHit = 0;               //Controls the movment of the alien flock.
+  this.hit = 1; this.lastHit = 0;               //Controls the movment of the alien flock
   this.speed = 10;
 
   this.draw = function() {};
 
   this.die = function() {
     if(Game.board.nextLevel()) {
-      Game.loadBoard(new GameBoard(Game.board.nextLevel()));    //Detects when you've won the game.
+      Game.loadBoard(new GameBoard(Game.board.nextLevel()));    //Detects when you've won the game
     } else {
       Game.callbacks['win']();
     }
@@ -78,7 +78,7 @@ Alien.prototype.step = function(dt) {
 
 Alien.prototype.fireSometimes = function() {
       if(Math.random()*100 < 10) {
-        this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,         //Controls the firing on alien weapons.
+        this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,         //Controls the firing on alien weapons
                                       this.y + this.h, 
                                      { dy: 100 });
       }
@@ -110,9 +110,9 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 5) {         //How many missiles you can fire in a row.
-    GameAudio.play('fire');                                                         //Audio for firing missiles.
-    this.board.addSprite('missile',                                                 //Adds the missile sprite.
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 5) {         //How many missiles you can fire in a row
+    GameAudio.play('fire');                                                         //Audio for firing missiles
+    this.board.addSprite('missile',                                                 //Adds the missile sprite
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
                           { dy: -100, player: true });
