@@ -1,5 +1,5 @@
 var Game = new function() {                                                                  
-  var KEY_CODES = { 37:'left', 39:'right', 38:'up', 40: 'down', 32 :'fire' };                          //Sets the function of the left, right and space bar keys
+  var KEY_CODES = { 37:'left', 39:'right', 38:'up', 40: 'down', 32 :'fire' };                          //Sets the function of the left, right, up, down and space bar keys
   this.keys = {};
 
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
@@ -18,7 +18,7 @@ var Game = new function() {
 
     this.level_data = level_data;
     this.callbacks = callbacks;
-    Sprites.load(sprite_data,this.callbacks['start']);                           //tells the game what to load on each level? 
+    Sprites.load(sprite_data,this.callbacks['start']);                           //tells the game what to load on each level 
   };
 
   this.loadBoard = function(board) { Game.board = board; };
@@ -26,7 +26,7 @@ var Game = new function() {
   this.loop = function() { 
     Game.board.step(30/1000); 
     Game.board.render(Game.canvas);
-    setTimeout(Game.loop,25);
+    setTimeout(Game.loop,25);           //game speed
   };
 };
 
@@ -35,7 +35,7 @@ var Sprites = new function() {
 
   this.load = function(sprite_data,callback) { 
     this.map = sprite_data;
-    this.image = new Image();                               //loads the sprites onto the gameboard??                        
+    this.image = new Image();                               //loads the sprites onto the gameboard                        
     this.image.onload = callback;
     this.image.src = 'images/sprites.png';
   };
@@ -57,7 +57,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
     canvas.font = "bold 40px arial";
     var measure = canvas.measureText(text);  
     canvas.fillStyle = "#FFFFFF";
-    canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);                //sets the font, text weight and colour of the game?
+    canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);                //sets the font, text weight and colour of the game
     canvas.font = "bold 20px arial";
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);
