@@ -117,7 +117,7 @@ Player.prototype.step = function(dt) {
                           this.y-this.h,
                           { dy: -100, player: true });
     this.board.missiles++;
-    this.reloading = 10;                                                            //Amount of time it takes to reload?
+    this.reloading = 10;                                                            //Amount of time it takes to reload
   }
   return true;
 }
