@@ -137,7 +137,7 @@ var GameBoard = function GameBoard(level_number) {
         var alien = Sprites.map['alien' + level[y][x]];
         if(alien) { 
           this.addSprite('alien' + level[y][x], // Which Sprite
-                         (alien.w+15)*x,  // X
+                         (alien.w+10)*x,  // X
                          alien.h*y,       // Y
                          { flock: flock }); // Options
         }
