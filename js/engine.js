@@ -1,4 +1,4 @@
-var Game = new function() {                                                                  
+var Game = new function (){                                                                  
   var KEY_CODES = { 37:'left', 39:'right', 38:'up', 40: 'down', 32 :'fire' };                          //Sets the function of the left, right, up, down and space bar keys
   this.keys = {};
 
@@ -61,6 +61,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
     canvas.font = "bold 20px arial";
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);
+  
   };
 };
 
@@ -113,8 +114,9 @@ var GameBoard = function GameBoard(level_number) {
     this.iterate(function() { this.draw(canvas); });
   };
 
+
   this.collision = function(o1,o2) {
-    return !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) ||                 
+  return !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) ||                 
              (o1.x+o1.w-1<o2.x) || (o1.x>o2.x+o2.w-1));
   };
                                                                 //maybe the collision detection for the game

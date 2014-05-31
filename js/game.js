@@ -60,6 +60,7 @@ Alien.prototype.die = function() {
   this.board.remove(this);
 }
 
+
 Alien.prototype.step = function(dt) {
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
