@@ -27,7 +27,7 @@
     'alien1': { sx: 0,  sy: 0,  w: 23, h: 18, cls: Alien, frames: 2 },
     'alien2': { sx: 0,  sy: 18, w: 23, h: 18, cls: Alien, frames: 2 },          //individual sprites defined from sheet
     'player': { sx: 0,  sy: 36, w: 30, h: 30, cls: Player },
-    'missile': { sx: 0,  sy: 66, w: 7,  h: 8, cls: Missile }
+    'missile': { sx: 0,  sy: 66, w: 9,  h: 9, cls: Missile }
   }
 
   function startGame() {
