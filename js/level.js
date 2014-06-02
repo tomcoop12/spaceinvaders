@@ -7,10 +7,10 @@
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
-          [0,1,0,1,0,2,0,1,0,1,0],
-          [2,2,2,2,2,0,2,2,2,2,2],
-          [1,1,1,1,1,0,1,1,1,1,1],
-          [0,2,2,2,0,1,0,2,2,2,0]], //determines the location of sprite on the game board in specific game levels.//  
+          [0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,2,2,2,0,0,0,0],
+          [0,0,0,0,1,1,1,0,0,0,0]], //determines the location of sprite on the game board in specific game levels.//  
      2:  [[0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
@@ -24,10 +24,10 @@
           [0,0,1,1,1,1,1,1,1,1,0]] };
 
   var spriteData = {
-    'alien1': { sx: 0,  sy: 0,  w: 23, h: 18, cls: Alien, frames: 2 },
-    'alien2': { sx: 0,  sy: 18, w: 23, h: 18, cls: Alien, frames: 2 },          //individual sprites defined from sheet
-    'player': { sx: 0,  sy: 36, w: 30, h: 30, cls: Player },
-    'missile': { sx: 0,  sy: 66, w: 9,  h: 9, cls: Missile }
+    'alien1': { sx: 0,  sy: 0,  w: 27, h: 22, cls: Alien, frames: 2 },
+    'alien2': { sx: 0,  sy: 22, w: 27, h: 22, cls: Alien, frames: 2 },          //individual sprites defined from sheet
+    'player': { sx: 0,  sy: 46, w: 30, h: 30, cls: Player },
+    'missile': { sx: 0,  sy: 76, w: 9,  h: 9, cls: Missile }
   }
 
   function startGame() {
