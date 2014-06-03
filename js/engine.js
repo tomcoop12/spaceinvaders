@@ -66,6 +66,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
 };
 
 var GameBoard = function GameBoard(level_number) {
+  this.score = 0;
   this.removed_objs = [];
   this.missiles = 0;
   this.level = level_number;
@@ -112,6 +113,10 @@ var GameBoard = function GameBoard(level_number) {
   this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
     this.iterate(function() { this.draw(canvas); });
+  
+  var scoretext = "Score: " + this.score;
+  canvas.font="20px arial";
+  canvas.fillText(scoretext,10,50);
   };
 
 

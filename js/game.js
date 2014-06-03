@@ -58,6 +58,7 @@ Alien.prototype.die = function() {
   GameAudio.play('die');
   this.flock.speed += 1;
   this.board.remove(this);
+  this.board.score++;
 }
 
 
