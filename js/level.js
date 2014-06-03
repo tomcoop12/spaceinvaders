@@ -43,7 +43,7 @@
   }
 
   function startGame() {
-    var screen = new GameScreen("Alien Invaders","press space to start",
+    var screen = new GameScreen("Pokevaders","press space to start",
                                  function() {                                   //Starts the game.
                                      Game.loadBoard(new GameBoard(1));
                                  });
