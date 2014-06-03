@@ -24,10 +24,11 @@
           [0,0,1,1,1,1,1,1,1,1,0]] };
 
   var spriteData = {
-    'alien1': { sx: 0,  sy: 0,  w: 27, h: 22, cls: Alien, frames: 2 },
-    'alien2': { sx: 0,  sy: 22, w: 27, h: 22, cls: Alien, frames: 2 },          //individual sprites defined from sheet
-    'player': { sx: 0,  sy: 46, w: 30, h: 30, cls: Player },
-    'missile': { sx: 0,  sy: 76, w: 9,  h: 9, cls: Missile }
+    'alien1': { sx: 0,  sy: 0,  w: 27, h: 22, cls: Alien, frames: 3 },
+    'alien2': { sx: 0,  sy: 22, w: 27, h: 22, cls: Alien, frames: 3 },
+    'alien3': { sx: 0,  sy: 43, w: 27, h: 22, cls: Alien, frames: 3 },                                                                       //individual sprites defined from sheet
+    'player': { sx: 0,  sy: 70, w: 30, h: 30, cls: Player },
+    'missile': { sx: 0, sy: 100, w: 9,  h: 9, cls: Missile }
   }
 
   function startGame() {
