@@ -1,45 +1,55 @@
 var Game = new function (){                                                                  
-  var KEY_CODES = { 37:'left', 39:'right', 38:'up', 40: 'down', 32 :'fire' };                          //Sets the function of the left, right, up, down and space bar keys
+//sets keyboard functions
+  var KEY_CODES = { 37:'left', 39:'right', 38:'up', 40: 'down', 32 :'fire' };                          
   this.keys = {};
 
-  this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
+ 
+//creates canvas and sets drawing
+this.initialize =       
+    function(canvas_dom,level_data,sprite_data,callbacks) {
     this.canvas_elem = $(canvas_dom)[0];
     this.canvas = this.canvas_elem.getContext('2d');
-    this.width = $(this.canvas_elem).attr('width');                               //Maybe sets the height and width of game? 
+    this.width = $(this.canvas_elem).attr('width');                      
     this.height= $(this.canvas_elem).attr('height');
 
+    //linking key codes to event that happens when a buttons pushed
     $(window).keydown(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = true;
     });
 
+    //when key is up stop event?
     $(window).keyup(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = false;
     });
 
+//tells the game what to load on each level
     this.level_data = level_data;
     this.callbacks = callbacks;
-    Sprites.load(sprite_data,this.callbacks['start']);                           //tells the game what to load on each level 
+    Sprites.load(sprite_data,this.callbacks['start']);                            
   };
 
   this.loadBoard = function(board) { Game.board = board; };
 
-  this.loop = function() { 
+//game speed/timing
+    this.loop = function() { 
     Game.board.step(30/1000); 
     Game.board.render(Game.canvas);
-    setTimeout(Game.loop,25);           //game speed
+    setTimeout(Game.loop,25);           
   };
 };
 
+//links sprites to game
 var Sprites = new function() {
   this.map = { }; 
 
   this.load = function(sprite_data,callback) { 
     this.map = sprite_data;
-    this.image = new Image();                               //loads the sprites onto the gameboard                        
+    this.image = new Image();                                                     
     this.image.onload = callback;
     this.image.src = 'images/sprites.png';
   };
 
+//draws sprites
   this.draw = function(canvas,sprite,x,y,frame) {
     var s = this.map[sprite];
     if(!frame) frame = 0;
@@ -47,17 +57,20 @@ var Sprites = new function() {
   };
 }
 
+//draws screen
 var GameScreen = function GameScreen(text,text2,callback) {
-  this.step = function(dt) {
+  //spacebar function
+    this.step = function(dt) {
     if(Game.keys['fire'] && callback) callback();
   };
 
-  this.render = function(canvas) {
+////sets the font, text weight and colour of the game  
+this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
     canvas.font = "bold 40px arial";
     var measure = canvas.measureText(text);  
     canvas.fillStyle = "#CC0000";
-    canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);                //sets the font, text weight and colour of the game
+    canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);
     canvas.font = "bold 20px arial";
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);
@@ -152,6 +165,7 @@ var GameBoard = function GameBoard(level_number) {
     }
   };
 
+//function to move to next level
   this.nextLevel = function() { 
     return Game.level_data[level_number + 1] ? (level_number + 1) : false 
   };
@@ -159,6 +173,7 @@ var GameBoard = function GameBoard(level_number) {
   this.loadLevel(Game.level_data[level_number]);
 };
 
+//function for audio
 var GameAudio = new function() {
   this.load_queue = [];
   this.loading_sounds = 0;

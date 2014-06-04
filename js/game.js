@@ -7,6 +7,7 @@ var AlienFlock = function AlienFlock() {
 
   this.draw = function() {};
 
+//if all aliens are dead, player wins
   this.die = function() {
     if(Game.board.nextLevel()) {
       Game.loadBoard(new GameBoard(Game.board.nextLevel()));    //Detects when you've won the game
@@ -15,6 +16,7 @@ var AlienFlock = function AlienFlock() {
     }
   }
 
+//increases speed of flock as they move down/less aliens
   this.step = function(dt) { 
     if(this.hit && this.hit != this.lastHit) {
       this.lastHit = this.hit;
@@ -23,7 +25,7 @@ var AlienFlock = function AlienFlock() {
       this.dy=0;
     }
     this.dx = this.speed * this.hit;
-
+//blocks aliens moving off board
     var max = {}, cnt = 0;
     this.board.iterate(function() {
       if(this instanceof Alien)  {
@@ -50,10 +52,12 @@ var Alien = function Alien(opts) {
   this.mx = 0;
 }
 
+//uses sprite data to draw alien
 Alien.prototype.draw = function(canvas) {
   Sprites.draw(canvas,this.name,this.x,this.y,this.frame);
 }
 
+//tells game what to do when an alien dies
 Alien.prototype.die = function() {
   GameAudio.play('die');
   this.flock.speed += 1;
@@ -62,15 +66,21 @@ Alien.prototype.die = function() {
 }
 
 
+//flock mobility 
 Alien.prototype.step = function(dt) {
+  //movement on x axis 
   this.mx += dt * this.flock.dx;
+  //movement on y axis
   this.y += this.flock.dy;
+  //speed of flock
   if(Math.abs(this.mx) > 10) {
-    if(this.y == this.flock.max_y[this.x]) {
+  //how often flock shoots
+  if(this.y == this.flock.max_y[this.x]) {
       this.fireSometimes();
     }
     this.x += this.mx;
     this.mx = 0;
+    //tells game how many sprite frames to count
     this.frame = (this.frame+1) % 2;
     if(this.x > Game.width - Sprites.map.alien1.w * 2) this.flock.hit = -1;
     if(this.x < Sprites.map.alien1.w) this.flock.hit = 1;
@@ -90,16 +100,17 @@ var Player = function Player(opts) {
   this.reloading = 0;
 }
 
+//draws player 
 Player.prototype.draw = function(canvas) {
    Sprites.draw(canvas,'player',this.x,this.y);
 }
 
-
+//die when player is hit
 Player.prototype.die = function() {
   GameAudio.play('die');
   Game.callbacks['die']();
 }
-
+//key speed and function
 Player.prototype.step = function(dt) {
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
@@ -111,9 +122,10 @@ Player.prototype.step = function(dt) {
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
 
   this.reloading--;
-
+//fire and spacebar function
   if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 5) {         //How many missiles you can fire in a row
-    GameAudio.play('fire');                                                         //Audio for firing missiles
+    GameAudio.play('fire');                                                         
+    //makes missile appear when player shoots
     this.board.addSprite('missile',                                                 //Adds the missile sprite
                           this.x + this.w/2 - Sprites.map.missile.w/2,
                           this.y-this.h,
@@ -129,14 +141,14 @@ var Missile = function Missile(opts) {
    this.dy = opts.dy;
    this.player = opts.player;
 }
-
+//draws missile
 Missile.prototype.draw = function(canvas) {
    Sprites.draw(canvas,'missile',this.x,this.y);
 }
 
 Missile.prototype.step = function(dt) {
    this.y += this.dy * dt;
-
+//alien disappears when hit by missile
    var enemy = this.board.collide(this);
    if(enemy) { 
      enemy.die();
