@@ -43,7 +43,7 @@
   }
 
   function startGame() {
-    var screen = new GameScreen("Pokevaders","press space to start",
+    var screen = new GameScreen("Pokevaders: Shoot 'em all","press space to start",
                                  function() {                                   //Starts the game.
                                      Game.loadBoard(new GameBoard(1));
                                  });
@@ -69,7 +69,7 @@
   }
 
   $(function() {
-    GameAudio.load({ 'fire' : 'media/laser.ogg', 'die' : 'media/explosion.ogg' }, 
+    GameAudio.load({ 'fire' : 'media/pika.ogg', 'die' : 'media/die.ogg' }, 
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,                 //This puts the audio for lasers and explosions??
                                       { "start": startGame,
